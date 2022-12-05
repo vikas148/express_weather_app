@@ -1,15 +1,26 @@
+// 1.20 se start kre
+
+
 const express = require("express");
-const app = express();
+// const { templates } = require("handlebars");
 const path = require("path");
+const hbs = require('hbs')
+
+const app = express();
 const port = process.env.PORT || 8000;
 
 //public static path
 // console.log(path.join(__dirname,"../public"));
-const static_path =path.join(__dirname,"../public")
+const static_path = path.join(__dirname,"../public")
+const templates_path = path.join(__dirname,"./templates/views")
+// const partials_path = path.join(__dirname,"../templates/partials")
+const partials_path = path.join(__dirname,"./templates/partials")
 
-app.set('view engine','hbs')
+
+app.set('view engine', 'hbs')
+app.set('views', templates_path)
 app.use(express.static(static_path));
-
+hbs.registerPartial(partials_path)
 
 
 
